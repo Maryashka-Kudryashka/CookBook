@@ -1,0 +1,55 @@
+@import "Colors.scss";
+
+.RecipeForm {
+  position: fixed;
+  height: calc(100vh - 187px);
+  width: 30%;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+  border: 2px solid $main-green;
+  border-radius: 20px;
+  padding: 10px 30px;
+  text-align: center;
+  background-color: #fff;
+  @media screen and (max-width: 950px) {
+    width: 75%;
+  }
+  &__header {
+    color: $main-green;
+    font-family: 'Kalam', cursive;
+    font-size: 25px;
+    text-align: center;
+    margin: 0;
+  }
+  &__form {
+    text-align: left;
+  }
+  &__input {
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+    border: 1px dashed $main-green;
+    padding: 5px;
+    color: $main-grey;
+    font-size: 16px;
+    font-family: 'Dosis', sans-serif;
+  }
+  &__label {
+    font-weight: bold;
+    font-size: 19px;
+  }
+  &__button {
+    background-color: $main-green;
+    font-size: 17px;
+    padding: 5px 10px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    border: 1px dashed #fff;
+    &_cancel {
+      background-color: $main-grey
+    }
+  }
+}

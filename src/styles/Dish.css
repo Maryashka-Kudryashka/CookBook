@@ -1,0 +1,53 @@
+.Dish {
+  width: 100%;
+  margin: 20px auto;
+  border: 2px solid #4f7c42;
+  border-radius: 20px;
+  padding: 10px 30px;
+  box-sizing: border-box; }
+  .Dish__preview {
+    display: flex;
+    width: 100%;
+    justify-content: space-between; }
+  .Dish__info-container {
+    display: flex; }
+  .Dish__image {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 2px dashed #4f7c42; }
+    @media screen and (max-width: 950px) {
+      .Dish__image {
+        display: none; } }
+    .Dish__image_undefined {
+      width: 70px;
+      height: 70px;
+      background: url("../icons/salad.svg") no-repeat center;
+      background-size: 70px 70px;
+      padding: 10px; }
+  .Dish__info {
+    display: block;
+    margin: 0 10px 0 20px; }
+  .Dish__name {
+    color: #4f7c42;
+    font-family: 'Kalam', cursive;
+    font-size: 25px;
+    margin: 0px; }
+  .Dish__description {
+    margin: 5px 10px;
+    font-size: 19px; }
+  .Dish__icons {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px; }
+  .Dish__delete {
+    width: 40px;
+    height: 40px;
+    background: url("../icons/delete.svg") no-repeat center;
+    background-size: 40px 40px; }
+  .Dish__edit {
+    width: 40px;
+    height: 40px;
+    background: url("../icons/edit.svg") no-repeat center;
+    background-size: 40px 40px;
+    margin-bottom: 15px; }

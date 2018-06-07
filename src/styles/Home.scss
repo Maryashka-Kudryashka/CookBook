@@ -1,0 +1,10 @@
+@import "Colors.scss";
+
+.Home {
+  &__name {
+    color: $main-green;
+    font-family: 'Kalam', cursive;
+    font-size: 50px;
+    text-align: center;
+  }
+}

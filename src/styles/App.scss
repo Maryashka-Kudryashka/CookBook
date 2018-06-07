@@ -1,0 +1,56 @@
+@import "Colors.scss";
+
+.App {
+  font-family: 'Dosis', sans-serif;
+  color: $main-grey;
+  &__main {
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-around;
+  }
+  &__name {
+    color: $main-green;
+    font-family: 'Kalam', cursive;
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+  &__empty-container {
+    width: 33%;
+    height: calc(100vh - 180px - 20px);
+    margin: 20px;
+    @media screen and (max-width: 950px) {
+      display: none;
+    }
+  }
+  &__recipes {
+    width: 60%;
+    @media screen and (max-width: 950px) {
+      width: 100%;
+    }
+    &_undefined {
+      width: 30%;
+      margin-top: 60px;
+      color: $main-grey;
+      font-family: 'Kalam', cursive;
+      font-size: 35px;
+      border: 2px dashed $main-green;
+      border-radius: 15px;
+      padding: 60px;
+    }
+  }
+  &__add-dish {
+    margin: -40px 233px;
+    float: right;
+    background-color: $main-green;
+    border-radius: 5px;
+    border: 1px dashed #fff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 10px;
+    @media screen and (max-width: 950px) {
+      margin: -20px 133px;
+    }
+  }
+}

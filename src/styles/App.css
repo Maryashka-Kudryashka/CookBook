@@ -1,0 +1,47 @@
+.App {
+  font-family: 'Dosis', sans-serif;
+  color: #595959; }
+  .App__main {
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-around; }
+  .App__name {
+    color: #4f7c42;
+    font-family: 'Kalam', cursive;
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 0px; }
+  .App__empty-container {
+    width: 33%;
+    height: calc(100vh - 180px - 20px);
+    margin: 20px; }
+    @media screen and (max-width: 950px) {
+      .App__empty-container {
+        display: none; } }
+  .App__recipes {
+    width: 60%; }
+    @media screen and (max-width: 950px) {
+      .App__recipes {
+        width: 100%; } }
+    .App__recipes_undefined {
+      width: 30%;
+      margin-top: 60px;
+      color: #595959;
+      font-family: 'Kalam', cursive;
+      font-size: 35px;
+      border: 2px dashed #4f7c42;
+      border-radius: 15px;
+      padding: 60px; }
+  .App__add-dish {
+    margin: -40px 233px;
+    float: right;
+    background-color: #4f7c42;
+    border-radius: 5px;
+    border: 1px dashed #fff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 10px; }
+    @media screen and (max-width: 950px) {
+      .App__add-dish {
+        margin: -20px 133px; } }
