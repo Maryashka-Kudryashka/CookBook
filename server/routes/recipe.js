@@ -13,12 +13,18 @@ router.get('/allrecipes', async (req, res) => {
   res.send(recipes);
 });
 
+router.get('/:id', async (req, res) => {
+    const recipeId = req.params.id;
+    const recipe = await db.get().collection('recipes').findOne(ObjectId(recipeId));
+    res.send(recipe);
+});
+
 router.post('/add', async (req, res) => {
     let recipe = {...req.body};
-    const date = new Date();
-    recipe.date = date;
     delete recipe._id;
     if (!req.body._id) {
+      const date = new Date();
+      recipe.date = date;
       const savedRecipe = await db.get().collection('recipes').save(recipe);
       res.send(savedRecipe.ops[0]);
     } else {

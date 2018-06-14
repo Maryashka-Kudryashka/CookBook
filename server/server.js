@@ -18,7 +18,7 @@ db.connect(url, (err) => {
         console.log('Unable to connect to Mongo.', err);
         process.exit(1)
     } else {
-        console.log("Connected successfully to server");
+        console.log('Connected successfully to server');
         app.listen(port, () => {
             console.log('Our Server is running')
         })

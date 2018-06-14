@@ -1,22 +1,18 @@
-@import "Colors.scss";
+@import 'Colors.scss';
 
 .RecipeForm {
-  position: fixed;
-  height: calc(100vh - 187px);
   width: 30%;
-  bottom: 0;
-  right: 0;
-  margin: 20px;
   border: 2px solid $main-green;
   border-radius: 20px;
-  padding: 10px 30px;
+  padding: 10px 30px 50px 20px;
+  margin: 60px auto;
   text-align: center;
-  background-color: #fff;
+  font-family: 'Dosis', sans-serif;
+  color: $main-green;
   @media screen and (max-width: 950px) {
     width: 75%;
   }
   &__header {
-    color: $main-green;
     font-family: 'Kalam', cursive;
     font-size: 25px;
     text-align: center;
@@ -33,7 +29,6 @@
     padding: 5px;
     color: $main-grey;
     font-size: 16px;
-    font-family: 'Dosis', sans-serif;
   }
   &__label {
     font-weight: bold;

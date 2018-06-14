@@ -1,4 +1,4 @@
-@import "Colors.scss";
+@import 'Colors.scss';
 
 .App {
   font-family: 'Dosis', sans-serif;
@@ -14,14 +14,6 @@
     font-size: 50px;
     text-align: center;
     margin-bottom: 0px;
-  }
-  &__empty-container {
-    width: 33%;
-    height: calc(100vh - 180px - 20px);
-    margin: 20px;
-    @media screen and (max-width: 950px) {
-      display: none;
-    }
   }
   &__recipes {
     width: 60%;

@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import '../styles/Dish.css';
-import block from "../helpers/BEM";
-import Recipe from "./Recipe";
-import { connect } from "react-redux";
-import { showHideRecipeForm } from "../actions/recipeForm";
-import { deleteRecipes,showRecipe } from "../actions/recipe";
+import block from '../helpers/BEM';
+import Recipe from './Recipe';
+import { connect } from 'react-redux';
+import { deleteRecipes,showRecipe } from '../actions/recipe';
+import { NavLink } from 'react-router-dom';
 
-const b = block("Dish");
+const b = block('Dish');
 
 class Dish extends Component {
   constructor(props) {
     super(props);
-    this.handleEdit = this.handleEdit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
-  }
-
-  handleEdit(event) {
-    event.stopPropagation();
-    this.props.showHideForm(true, this.props.recipe);
   }
 
   handleDelete(event) {
@@ -41,8 +35,8 @@ class Dish extends Component {
       <section className={b()} onClick={this.handleExpand}>
         <section className={b('preview')}>
           <div className={b('info-container')}>
-            <img className={b('image')} style={{display: recipe.image !== "" ? 'flex' : 'none'}} src={recipe.image} alt="Dish"/>
-            <span className={b('image',['undefined'])} style={{display: recipe.image ? 'none' : 'flex'}}></span>
+            <img className={b('image', [recipe.image !== '' ? '' : 'disabled'])} src={recipe.image} alt='Dish'/>
+            <span className={b('image-placeholder', [recipe.image !== '' ? 'disabled' : ''])}></span>
             <div className={b('info')}>
               <h2 className={b('name')}>{recipe.name}</h2>
               <time className={b('date')}>{date}</time>
@@ -50,7 +44,9 @@ class Dish extends Component {
             <span className={b('description')}>{recipe.description}</span>
           </div>
           <div className={b('icons')}>
-            <span className={b('edit')} onClick={this.handleEdit}></span>
+            <NavLink to={`/recipe-form/${recipe._id}`} style={{display: 'flex'}}>
+              <span className={b('edit')}></span>
+            </NavLink>
             <span className={b('delete')} onClick={this.handleDelete}></span>
           </div>
         </section>
@@ -61,9 +57,8 @@ class Dish extends Component {
 }
 
 export default connect((state, props) =>
-  null,
+  {return state},
   (dispatch) => ({
-    showHideForm: (visible, recipe) => dispatch(showHideRecipeForm(visible, recipe)),
     deleteRecipe: (recipe) => dispatch(deleteRecipes(recipe)),
     recipeShow: (recipe, expanded) => dispatch(showRecipe(recipe, expanded))
   })

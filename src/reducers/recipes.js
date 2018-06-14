@@ -1,13 +1,11 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import {
     FETCH_RECIPES_START,
     FETCH_RECIPES_SUCCESS,
-    FETCH_RECIPES_FAIL,
     POST_RECIPE_SUCCESS,
-    DELETE_RECIPE_START,
     DELETE_RECIPE_SUCCESS,
     SHOW_RECIPE,
-    HIDE_RECIPE
+    FETCH_RECIPE_ID_SUCCESS
 } from '../helpers/actionTypes';
 
 export const allRecipes = (state = [], action) => {
@@ -47,6 +45,11 @@ export const allRecipes = (state = [], action) => {
 
         return recipe;
       });
+    case FETCH_RECIPE_ID_SUCCESS:
+      return [
+        action.recipe,
+        ...state
+      ]
     default:
         return state;
   }

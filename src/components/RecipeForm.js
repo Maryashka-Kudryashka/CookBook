@@ -1,35 +1,40 @@
 import React, { Component } from 'react';
 import '../styles/RecipeForm.css';
-import block from "../helpers/BEM";
-import { showHideRecipeForm } from "../actions/recipeForm";
-import { connect } from "react-redux";
-import { postRecipes } from "../actions/recipe";
+import block from '../helpers/BEM';
+import { connect } from 'react-redux';
+import { postRecipes,fetchRecipeById } from '../actions/recipe';
+import { NavLink } from 'react-router-dom';
+import { getRecipeById } from '../reducers';
 
-
-const b = block("RecipeForm");
+const b = block('RecipeForm');
 
 class RecipeForm extends Component {
   constructor(props) {
     super(props);
+    let { recipe, recipeId } = this.props;
+    if (!recipe) {
+      recipeId && this.props.recipeById(recipeId);
+      recipe = {};
+    }
     this.state = {
-      name: props.recipe.name || "",
-      image: props.recipe.image || "",
-      description: props.recipe.description || "",
-      recipe: props.recipe.recipe || "",
-      _id: props.recipe._id || ""
+      name: recipe.name || '',
+      image: recipe.image || '',
+      description: recipe.description || '',
+      recipe: recipe.recipe || '',
+      _id: recipe._id || ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
   }
 
   componentWillReceiveProps(props) {
+    let recipe = props.recipe || {};
     this.setState({
-      name: props.recipe.name || "",
-      image: props.recipe.image || "",
-      description: props.recipe.description || "",
-      recipe: props.recipe.recipe || "",
-      _id: props.recipe._id || ""
+      name: recipe.name || '',
+      image: recipe.image || '',
+      description: recipe.description || '',
+      recipe: recipe.recipe || '',
+      _id: recipe._id || ''
     });
   }
 
@@ -43,24 +48,10 @@ class RecipeForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.postRecipeToDB(this.state);
-    this.props.showHideForm(false, {});
-  }
-
-  handleCancel(event) {
-    event.preventDefault();
-    this.props.showHideForm(false, {});
-  }
-
-  onImageChange(name, val) {
-    this.setState({
-      ...this.state,
-      [name]: val
-    });
   }
 
   render() {
-    const isEnabled =
-    this.state.name.length > 0 &&
+    const isEnabled = this.state && this.state.name.length > 0 &&
     this.state.description.length > 0 &&
     this.state.recipe.length > 0;
     return (
@@ -69,32 +60,37 @@ class RecipeForm extends Component {
         <form className={b('form')} onSubmit={this.handleSubmit}>
           <label className={b('label')}>
             Name
-            <input className={b('input')} name="name" value={this.state.name} onChange={this.handleChange}/>
+            <input className={b('input')} name='name' value={this.state.name} onChange={this.handleChange}/>
           </label>
           <label className={b('label')}>
             Image
-            <input className={b('input')} type="file" accept="image/*" onChange={this.handleChange}/>
+            <input className={b('input')} type='file' accept='image/*' onChange={this.handleChange}/>
           </label>
           <label className={b('label')}>
             Description
-            <textarea className={b('input')} name="description" value={this.state.description} onChange={this.handleChange}/>
+            <textarea className={b('input')} name='description' value={this.state.description} onChange={this.handleChange}/>
           </label>
           <label className={b('label')}>
             Recipe
-            <textarea rows="6" className={b('input')} name="recipe" value={this.state.recipe} onChange={this.handleChange}/>
+            <textarea rows='6' className={b('input')} name='recipe' value={this.state.recipe} onChange={this.handleChange}/>
           </label>
-          <input className={b('button')} type="submit" value="Submit" style={{display: isEnabled ? "inline-block" : "none"}}/>
-          <button className={b('button', ['cancel'])} onClick={this.handleCancel}>Cancel</button>
+          <input className={b('button')} type='submit' value='Submit' style={{display: isEnabled ? 'inline-block' : 'none'}}/>
+          <NavLink to='/'>
+            <button className={b('button', ['cancel'])}>Cancel</button>
+          </NavLink>
         </form>
       </section>
     );
   }
 }
 
-export default connect((state, props) =>
-  null,
-  (dispatch) => ({
-    showHideForm: (visible, recipe) => dispatch(showHideRecipeForm(visible, recipe)),
-    postRecipeToDB: (recipe) => dispatch(postRecipes(recipe))
+
+export default connect((state, props) => {
+    const recipeId = props.match.params.id;
+    const recipe = getRecipeById(state, recipeId);
+    return {recipeId, recipe}
+  },(dispatch) => ({
+    postRecipeToDB: (recipe) => dispatch(postRecipes(recipe)),
+    recipeById: (id) => dispatch(fetchRecipeById(id))
   })
 )(RecipeForm);
